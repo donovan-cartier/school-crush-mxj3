@@ -6,8 +6,8 @@
 [ext_resource type="Texture2D" uid="uid://ckk3y3ylramub" path="res://Characters/Assets/crush_female.png" id="4_e8pg0"]
 [ext_resource type="Script" path="res://Game/LoveInterest.gd" id="5_r6rgh"]
 [ext_resource type="Texture2D" uid="uid://cfy7b7mldobkg" path="res://Characters/Assets/crush_male.png" id="6_v1yic"]
-[ext_resource type="PackedScene" uid="uid://emffhijqgks6" path="res://UI/speech_bubble.tscn" id="7_67h0n"]
 [ext_resource type="Script" path="res://UI/SpeechControl.gd" id="7_fffha"]
+[ext_resource type="PackedScene" uid="uid://bwijllu1rm01i" path="res://UI/game_over.tscn" id="8_odtxv"]
 
 [sub_resource type="Animation" id="Animation_uslyu"]
 resource_name = "enter"
@@ -30,36 +30,46 @@ _data = {
 "enter": SubResource("Animation_uslyu")
 }
 
-[node name="Game" type="Node2D"]
+[node name="Game" type="Node2D" node_paths=PackedStringArray("love_interest", "game_over_screen")]
 script = ExtResource("1_3nbi6")
+love_interest = NodePath("LoveInterest")
+game_over_screen = NodePath("CanvasLayer/GameOver")
 
 [node name="Background" type="Sprite2D" parent="."]
 texture = ExtResource("1_l1kaf")
 centered = false
 
-[node name="Character" parent="." instance=ExtResource("4_dvoy4")]
+[node name="Character" parent="." node_paths=PackedStringArray("speech_control") instance=ExtResource("4_dvoy4")]
 position = Vector2(55.5, 106)
+speech_control = NodePath("../CanvasLayer/SpeechControl")
 
-[node name="Character2" parent="." instance=ExtResource("4_dvoy4")]
+[node name="Character2" parent="." node_paths=PackedStringArray("speech_control") instance=ExtResource("4_dvoy4")]
 position = Vector2(108.5, 106)
+speech_control = NodePath("../CanvasLayer/SpeechControl")
 
-[node name="Character3" parent="." instance=ExtResource("4_dvoy4")]
+[node name="Character3" parent="." node_paths=PackedStringArray("speech_control") instance=ExtResource("4_dvoy4")]
 position = Vector2(109.5, 150)
+speech_control = NodePath("../CanvasLayer/SpeechControl")
 
-[node name="Character4" parent="." instance=ExtResource("4_dvoy4")]
+[node name="Character4" parent="." node_paths=PackedStringArray("speech_control") instance=ExtResource("4_dvoy4")]
 position = Vector2(56.5, 150)
+speech_control = NodePath("../CanvasLayer/SpeechControl")
 
-[node name="Character5" parent="." instance=ExtResource("4_dvoy4")]
+[node name="Character5" parent="." node_paths=PackedStringArray("speech_control") instance=ExtResource("4_dvoy4")]
 position = Vector2(217.5, 106)
+speech_control = NodePath("../CanvasLayer/SpeechControl")
 
-[node name="Character6" parent="." instance=ExtResource("4_dvoy4")]
+[node name="Character6" parent="." node_paths=PackedStringArray("speech_control") instance=ExtResource("4_dvoy4")]
 position = Vector2(271, 106)
+speech_control = NodePath("../CanvasLayer/SpeechControl")
 
-[node name="Character7" parent="." instance=ExtResource("4_dvoy4")]
+[node name="Character7" parent="." node_paths=PackedStringArray("speech_control") instance=ExtResource("4_dvoy4")]
 position = Vector2(272, 150)
+speech_control = NodePath("../CanvasLayer/SpeechControl")
 
-[node name="Character8" parent="." instance=ExtResource("4_dvoy4")]
+[node name="Character8" parent="." node_paths=PackedStringArray("speech_control") instance=ExtResource("4_dvoy4")]
 position = Vector2(219, 150)
+speech_control = NodePath("../CanvasLayer/SpeechControl")
 
 [node name="LoveInterest" type="Sprite2D" parent="."]
 position = Vector2(500, 52)
@@ -87,6 +97,7 @@ offset_right = 20.0
 offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 script = ExtResource("7_fffha")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/SpeechControl"]
@@ -103,7 +114,7 @@ offset_bottom = 58.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="SpeechBubble" parent="CanvasLayer/SpeechControl/VBoxContainer" instance=ExtResource("7_67h0n")]
-layout_mode = 2
+[node name="GameOver" parent="CanvasLayer" instance=ExtResource("8_odtxv")]
+visible = false
 
 [connection signal="crush_entered" from="LoveInterest" to="." method="_on_love_interest_crush_entered"]

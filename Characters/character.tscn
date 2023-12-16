@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://Characters/Character.gd" id="1_b2q7s"]
 [ext_resource type="Shader" path="res://Shaders/outline.gdshader" id="2_uhvky"]
 [ext_resource type="Texture2D" uid="uid://dfhoqkhqyci1t" path="res://Characters/Assets/char_1.png" id="3_io1a7"]
-[ext_resource type="PackedScene" uid="uid://dwrnvcwhaq1dy" path="res://UI/action_menu.tscn" id="4_623bm"]
+[ext_resource type="Texture2D" uid="uid://d0gjn0o1jetqj" path="res://UI/Assets/icon_speaking.png" id="4_iimyv"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_vmhrc"]
 resource_local_to_scene = true
@@ -24,8 +24,14 @@ texture = ExtResource("3_io1a7")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_s41eo")
 
-[node name="ActionMenu" parent="." instance=ExtResource("4_623bm")]
+[node name="RandomEventTimer" type="Timer" parent="."]
+
+[node name="HintIcon" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(0, -24)
+texture = ExtResource("4_iimyv")
 
 [connection signal="input_event" from="." to="." method="_on_input_event"]
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
+[connection signal="timeout" from="RandomEventTimer" to="." method="_on_random_event_timer_timeout"]

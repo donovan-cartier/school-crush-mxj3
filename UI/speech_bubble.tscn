@@ -1,10 +1,13 @@
-[gd_scene load_steps=2 format=3 uid="uid://emffhijqgks6"]
+[gd_scene load_steps=3 format=3 uid="uid://emffhijqgks6"]
 
 [ext_resource type="Texture2D" uid="uid://dfdo6n13ihxkr" path="res://UI/Assets/ui_speech_bubble.png" id="1_mhirh"]
+[ext_resource type="Script" path="res://UI/speech_bubble.gd" id="2_8va37"]
 
 [node name="SpeechBubble" type="TextureRect"]
+modulate = Color(1, 1, 1, 0.662745)
 size_flags_horizontal = 0
 texture = ExtResource("1_mhirh")
+script = ExtResource("2_8va37")
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 1

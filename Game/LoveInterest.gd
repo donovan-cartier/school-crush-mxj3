@@ -8,9 +8,12 @@ signal crush_entered
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	await owner.ready
-	new_sequence()
+	new_sequence(true)
 	
-func new_sequence() -> void:
+func new_sequence(first: bool = false) -> void:
+	if !first:
+		animation_player.play_backwards("enter")
+		await animation_player.animation_finished
 	texture = love_interest_sprites.pick_random()
 	animation_player.play("enter")
 	crush_entered.emit()
