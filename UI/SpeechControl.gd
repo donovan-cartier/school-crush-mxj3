@@ -1,0 +1,11 @@
+extends Control
+
+var dialogues: Array[String] = [
+	"STOP TALKING SO LOUDLY OMG",
+	"WHO IS THIS",
+	"ANYONE GOT A PEN?",
+	"ANYONE GOT AN ERASER?",
+	"YALL SEEN THIS NEW GAME?",
+	"WHY IS EVERYONE SPEAKING",
+	"WHERE IS THE TEACHER",
+]
