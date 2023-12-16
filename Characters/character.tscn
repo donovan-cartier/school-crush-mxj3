@@ -1,0 +1,65 @@
+[gd_scene load_steps=15 format=3 uid="uid://capas210hd7ob"]
+
+[ext_resource type="Script" path="res://Characters/Character.gd" id="1_b2q7s"]
+[ext_resource type="Shader" path="res://Shaders/outline.gdshader" id="2_uhvky"]
+[ext_resource type="Texture2D" uid="uid://dfhoqkhqyci1t" path="res://Characters/Assets/char_1.png" id="3_io1a7"]
+[ext_resource type="Texture2D" uid="uid://d3jujatp70kgc" path="res://UI/Assets/icon_ask.png" id="4_7yb8y"]
+[ext_resource type="Texture2D" uid="uid://bircq0jhgc67j" path="res://UI/Assets/icon_ask_pressed.png" id="5_pm346"]
+[ext_resource type="Texture2D" uid="uid://cd4o5xmf7eul3" path="res://UI/Assets/icon_ask_hover.png" id="6_vgqry"]
+[ext_resource type="Texture2D" uid="uid://ddytbj6l0sf88" path="res://UI/Assets/icon_blame.png" id="7_lf2vw"]
+[ext_resource type="Texture2D" uid="uid://by7gdbhigyo5" path="res://UI/Assets/icon_blame_pressed.png" id="8_y1juw"]
+[ext_resource type="Texture2D" uid="uid://bvcx5ifo33aja" path="res://UI/Assets/icon_blame_hover.png" id="9_38uj4"]
+[ext_resource type="Texture2D" uid="uid://cev8m4d6hskxy" path="res://UI/Assets/icon_close.png" id="10_528mr"]
+[ext_resource type="Texture2D" uid="uid://b2vrq7ede7ndr" path="res://UI/Assets/icon_close_pressed.png" id="11_fsgqi"]
+[ext_resource type="Texture2D" uid="uid://b7bfjfxmrniny" path="res://UI/Assets/icon_close_hover.png" id="12_7quyb"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vmhrc"]
+shader = ExtResource("2_uhvky")
+shader_parameter/line_color = Vector4(1, 1, 1, 1)
+shader_parameter/line_thickness = 0.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_s41eo"]
+size = Vector2(26, 40)
+
+[node name="Character" type="Area2D"]
+script = ExtResource("1_b2q7s")
+
+[node name="CharacterSprite" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_vmhrc")
+texture = ExtResource("3_io1a7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_s41eo")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control"]
+layout_mode = 1
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="AskButton" type="TextureButton" parent="Control/HBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("4_7yb8y")
+texture_pressed = ExtResource("5_pm346")
+texture_hover = ExtResource("6_vgqry")
+
+[node name="BlameButton" type="TextureButton" parent="Control/HBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("7_lf2vw")
+texture_pressed = ExtResource("8_y1juw")
+texture_hover = ExtResource("9_38uj4")
+
+[node name="CloseButton" type="TextureButton" parent="Control/HBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("10_528mr")
+texture_pressed = ExtResource("11_fsgqi")
+texture_hover = ExtResource("12_7quyb")
+
+[connection signal="input_event" from="." to="." method="_on_input_event"]
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
