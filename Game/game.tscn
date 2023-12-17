@@ -159,11 +159,12 @@ font_size = 8
 outline_size = 2
 outline_color = Color(0, 0, 0, 1)
 
-[node name="Game" type="Node2D" node_paths=PackedStringArray("love_interest", "game_over_screen", "tutorial_screen")]
+[node name="Game" type="Node2D" node_paths=PackedStringArray("love_interest", "game_over_screen", "tutorial_screen", "game_timer")]
 script = ExtResource("1_3nbi6")
 love_interest = NodePath("LoveInterest")
 game_over_screen = NodePath("CanvasLayer/GameOver")
 tutorial_screen = NodePath("CanvasLayer/Tutorial")
+game_timer = NodePath("CanvasLayer/UI/GameTimer")
 
 [node name="Background" type="Sprite2D" parent="."]
 texture = ExtResource("1_l1kaf")

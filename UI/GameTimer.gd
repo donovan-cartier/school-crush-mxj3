@@ -5,6 +5,9 @@ var decrease_speed: float = 3.0
 
 @onready var game: Game = get_tree().get_root().get_node("Game")
 
+func _ready() -> void:
+	set_process(false)
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	value -= decrease_speed * delta

@@ -18,6 +18,7 @@ var has_highlight_buff: bool = false
 @export var love_interest: Sprite2D
 @export var game_over_screen: Control
 @export var tutorial_screen: Control
+@export var game_timer: GameTimer
 
 var current_round: int = 0
 
@@ -48,7 +49,8 @@ func start_new_sequence() -> void:
 
 func win() -> void:
 	love_interest.new_sequence()
-	points += 10
+	points += (game_timer.value / 100) * 30
+	
 	obtained_points.emit(points)
 	round_won.emit(current_round)
 	check_buff_costs()
@@ -64,15 +66,19 @@ func _on_classmate_buff_button_pressed() -> void:
 	if points >= classmate_buff_cost:
 		classmate_buff_level += 1
 		points -= classmate_buff_cost
+		classmate_buff_cost += 10
 		spent_points.emit(points)
 		bought_classmate_buff.emit(classmate_buff_level)
+		
 
 func _on_crush_buff_button_pressed() -> void:
 	if points >= crush_buff_cost:
 		crush_buff_level += 1
 		points -= crush_buff_cost
+		crush_buff_cost += 10
 		spent_points.emit(points)
 		bought_crush_buff.emit(crush_buff_level)
+		
 
 
 func _on_highlight_buff_button_pressed() -> void:
