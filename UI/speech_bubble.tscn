@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://emffhijqgks6"]
+[gd_scene load_steps=5 format=3 uid="uid://emffhijqgks6"]
 
 [ext_resource type="Texture2D" uid="uid://dfdo6n13ihxkr" path="res://UI/Assets/ui_speech_bubble.png" id="1_mhirh"]
 [ext_resource type="Script" path="res://UI/speech_bubble.gd" id="2_8va37"]
 [ext_resource type="FontFile" uid="uid://dpxifyakt7st" path="res://Fonts/PressStart2P.ttf" id="3_8u6is"]
+[ext_resource type="AudioStream" uid="uid://b3bwnryad6br2" path="res://Audio/Assets/speak.wav" id="4_jj1q0"]
 
 [node name="SpeechBubble" type="TextureRect" groups=["message"]]
 modulate = Color(1, 1, 1, 0.662745)
@@ -26,3 +27,7 @@ theme_override_fonts/font = ExtResource("3_8u6is")
 theme_override_font_sizes/font_size = 8
 text = "YOU ARE TALKING TOO LOUDLY."
 vertical_alignment = 1
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_jj1q0")
+autoplay = true

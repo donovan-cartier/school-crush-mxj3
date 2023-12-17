@@ -1,4 +1,4 @@
-[gd_scene load_steps=52 format=3 uid="uid://ci2nn6061c4ar"]
+[gd_scene load_steps=56 format=3 uid="uid://ci2nn6061c4ar"]
 
 [ext_resource type="Script" path="res://Game/game.gd" id="1_3nbi6"]
 [ext_resource type="Texture2D" uid="uid://cfy1jarvq7olf" path="res://World/Assets/background.png" id="1_l1kaf"]
@@ -28,12 +28,15 @@
 [ext_resource type="Texture2D" uid="uid://ysho37f6hwxa" path="res://UI/Assets/icon_buff_classmate_pressed.png" id="13_cnknd"]
 [ext_resource type="Script" path="res://UI/BuffLevel.gd" id="13_grle7"]
 [ext_resource type="Texture2D" uid="uid://tintuvycrngm" path="res://UI/Assets/icon_buff_classmate_hover.png" id="14_omdep"]
+[ext_resource type="AudioStream" uid="uid://byck17eqnxq8p" path="res://Audio/Assets/slide.wav" id="15_qi2an"]
 [ext_resource type="Texture2D" uid="uid://c56nuwtp0wr13" path="res://UI/Assets/icon_buff_crush_pressed.png" id="17_bhut7"]
 [ext_resource type="Texture2D" uid="uid://b66w1rckcnnub" path="res://UI/Assets/icon_buff_crush_hover.png" id="18_sm0u5"]
 [ext_resource type="Texture2D" uid="uid://c2utm36lw1we" path="res://UI/Assets/icon_buff_shhh_pressed.png" id="20_fosrm"]
 [ext_resource type="Texture2D" uid="uid://6qtgwotden6u" path="res://UI/Assets/icon_buff_shhh_hover.png" id="21_swrab"]
 [ext_resource type="Script" path="res://UI/GameTimer.gd" id="25_33uql"]
 [ext_resource type="PackedScene" uid="uid://d36w50j327ws1" path="res://UI/tutorial.tscn" id="34_4kbji"]
+[ext_resource type="AudioStream" uid="uid://sdbatnxyj4hw" path="res://Audio/Assets/bgmmxj3.ogg" id="35_kssvp"]
+[ext_resource type="AudioStream" uid="uid://d2hjivho2jski" path="res://Audio/Assets/valid.wav" id="37_8pab3"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ji43w"]
 resource_local_to_scene = true
@@ -159,12 +162,20 @@ font_size = 8
 outline_size = 2
 outline_color = Color(0, 0, 0, 1)
 
-[node name="Game" type="Node2D" node_paths=PackedStringArray("love_interest", "game_over_screen", "tutorial_screen", "game_timer")]
+[sub_resource type="LabelSettings" id="LabelSettings_bsgfb"]
+font = ExtResource("9_t4lpy")
+font_size = 8
+font_color = Color(0.145098, 0.337255, 0.180392, 1)
+outline_color = Color(1, 1, 1, 0.0745098)
+
+[node name="Game" type="Node2D" node_paths=PackedStringArray("love_interest", "game_over_screen", "tutorial_screen", "game_timer", "bgm_player", "win_player")]
 script = ExtResource("1_3nbi6")
 love_interest = NodePath("LoveInterest")
 game_over_screen = NodePath("CanvasLayer/GameOver")
 tutorial_screen = NodePath("CanvasLayer/Tutorial")
 game_timer = NodePath("CanvasLayer/UI/GameTimer")
+bgm_player = NodePath("BGM")
+win_player = NodePath("WinSFX")
 
 [node name="Background" type="Sprite2D" parent="."]
 texture = ExtResource("1_l1kaf")
@@ -245,6 +256,9 @@ love_interest_sprites = Array[Texture2D]([ExtResource("4_e8pg0"), ExtResource("6
 libraries = {
 "": SubResource("AnimationLibrary_0cn3m")
 }
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="LoveInterest"]
+stream = ExtResource("15_qi2an")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -439,7 +453,22 @@ text = "TIMER"
 label_settings = SubResource("LabelSettings_14qq0")
 vertical_alignment = 1
 
+[node name="Score" type="Label" parent="CanvasLayer/UI"]
+offset_left = 128.0
+offset_top = 16.0
+offset_right = 192.0
+offset_bottom = 37.0
+text = "SCORE: 0"
+label_settings = SubResource("LabelSettings_bsgfb")
+vertical_alignment = 1
+
 [node name="Tutorial" parent="CanvasLayer" instance=ExtResource("34_4kbji")]
+
+[node name="BGM" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("35_kssvp")
+
+[node name="WinSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("37_8pab3")
 
 [connection signal="bought_classmate_buff" from="." to="CanvasLayer/Buffs/ClassmateBuffButton/BuffLevel" method="_on_game_bought_classmate_buff"]
 [connection signal="bought_crush_buff" from="." to="CanvasLayer/Buffs/CrushBuffButton/BuffLevel" method="_on_game_bought_crush_buff"]

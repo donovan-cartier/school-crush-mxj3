@@ -5,6 +5,7 @@ class_name Game
 var character_in_love_ref: Character
 
 var points: int = 0
+var score: int = 0
 
 var classmate_buff_cost: int = 10
 var crush_buff_cost: int = 10
@@ -19,6 +20,8 @@ var has_highlight_buff: bool = false
 @export var game_over_screen: Control
 @export var tutorial_screen: Control
 @export var game_timer: GameTimer
+@export var bgm_player: AudioStreamPlayer
+@export var win_player: AudioStreamPlayer
 
 var current_round: int = 0
 
@@ -54,6 +57,8 @@ func win() -> void:
 	obtained_points.emit(points)
 	round_won.emit(current_round)
 	check_buff_costs()
+	win_player.play()
+	
 	
 func lose() -> void:
 	game_over_screen.show()
@@ -110,6 +115,7 @@ func _on_shhh_buff_button_pressed() -> void:
 func _on_start_button_pressed() -> void:
 	love_interest.new_sequence(true)
 	tutorial_screen.hide()
+	bgm_player.play()
 
 
 func _on_try_again_button_pressed() -> void:
