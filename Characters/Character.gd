@@ -35,9 +35,10 @@ func blame():
 func _on_start_sequence():
 	randomize()
 	if in_love:
-		var random_time = randf_range(5, 30)
+		var random_time = randf_range(5, 22)
 		if game.crush_buff_level != 0:
 			random_time -= (game.crush_buff_level + 1) * 1.5
+			random_time = clampf(random_time, 3.0, 999.0)
 			
 		random_event_timer.wait_time = random_time
 	else:

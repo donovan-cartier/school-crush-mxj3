@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://UI/speech_bubble.gd" id="2_8va37"]
 [ext_resource type="FontFile" uid="uid://dpxifyakt7st" path="res://Fonts/PressStart2P.ttf" id="3_8u6is"]
 
-[node name="SpeechBubble" type="TextureRect"]
+[node name="SpeechBubble" type="TextureRect" groups=["message"]]
 modulate = Color(1, 1, 1, 0.662745)
 offset_right = 217.0
 offset_bottom = 16.0

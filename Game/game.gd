@@ -17,13 +17,18 @@ var has_highlight_buff: bool = false
 
 @export var love_interest: Sprite2D
 @export var game_over_screen: Control
+@export var tutorial_screen: Control
 
+var current_round: int = 0
+
+signal round_won(round_number: int)
 signal sequence_started
 signal obtained_points(total_points)
 signal spent_points(total_points)
 
 signal bought_classmate_buff(level: int)
 signal bought_crush_buff(level: int)
+signal bought_highlight_buff
 
 signal can_buy_classmate_buff(value: bool)
 signal can_buy_crush_buff(value: bool)
@@ -45,7 +50,7 @@ func win() -> void:
 	love_interest.new_sequence()
 	points += 10
 	obtained_points.emit(points)
-	
+	round_won.emit(current_round)
 	check_buff_costs()
 	
 func lose() -> void:
@@ -53,7 +58,7 @@ func lose() -> void:
 
 func _on_love_interest_crush_entered() -> void:
 	start_new_sequence()
-
+	
 
 func _on_classmate_buff_button_pressed() -> void:
 	if points >= classmate_buff_cost:
@@ -71,11 +76,11 @@ func _on_crush_buff_button_pressed() -> void:
 
 
 func _on_highlight_buff_button_pressed() -> void:
-	if points >= highlight_buff_cost:
+	if points >= highlight_buff_cost && !has_highlight_buff:
 		points -= highlight_buff_cost
 		spent_points.emit(points)
 		has_highlight_buff = true
-
+		bought_highlight_buff.emit()
 
 func _on_spent_points(total_points: Variant) -> void:
 	check_buff_costs()
@@ -86,3 +91,24 @@ func check_buff_costs():
 	can_buy_highlight_buff.emit(points >= highlight_buff_cost)
 	can_buy_shhh_buff.emit(points >= shhh_buff_cost)
 
+
+
+func _on_shhh_buff_button_pressed() -> void:
+	if points >= shhh_buff_cost:
+		points -= shhh_buff_cost
+		spent_points.emit(points)
+		for message in get_tree().get_nodes_in_group("message"):
+			message.queue_free()
+
+
+func _on_start_button_pressed() -> void:
+	love_interest.new_sequence(true)
+	tutorial_screen.hide()
+
+
+func _on_try_again_button_pressed() -> void:
+	get_tree().change_scene_to_file("res://Game/game.tscn")
+
+
+func _on_quit_button_pressed() -> void:
+	get_tree().quit()

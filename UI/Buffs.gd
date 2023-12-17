@@ -13,6 +13,8 @@ var crush_buff_tooltip_i: BuffTooltip
 var highlight_buff_tooltip_i: BuffTooltip
 var shhh_buff_tooltip_i: BuffTooltip
 
+var highlight_perma_disabled := false
+
 func _on_game_can_buy_classmate_buff(value: bool) -> void:
 	classmate_buff_button.disabled = !value
 
@@ -20,8 +22,11 @@ func _on_game_can_buy_crush_buff(value: bool) -> void:
 	crush_buff_button.disabled = !value
 
 func _on_game_can_buy_highlight_buff(value: bool) -> void:
-	highlight_buff_button.disabled = !value
-
+	if highlight_perma_disabled:
+		highlight_buff_button.disabled = true
+	else:
+		highlight_buff_button.disabled = !value
+		
 func _on_game_can_buy_shhh_buff(value: bool) -> void:
 	shhh_buff_button.disabled = !value
 
@@ -60,3 +65,9 @@ func _on_highlight_buff_button_mouse_entered() -> void:
 
 func _on_highlight_buff_button_mouse_exited() -> void:
 	highlight_buff_tooltip_i.queue_free()
+
+
+func _on_game_bought_highlight_buff() -> void:
+	highlight_buff_button.texture_disabled = load("res://UI/Assets/icon_buff_highlight_disabled.png")
+	highlight_buff_button.disabled = true
+	highlight_perma_disabled = true

@@ -1,0 +1,119 @@
+[gd_scene load_steps=8 format=3 uid="uid://d36w50j327ws1"]
+
+[ext_resource type="Texture2D" uid="uid://c44rylnxkn6eq" path="res://UI/Assets/tutorial_1.png" id="1_86yet"]
+[ext_resource type="FontFile" uid="uid://dpxifyakt7st" path="res://Fonts/PressStart2P.ttf" id="1_okswt"]
+[ext_resource type="Texture2D" uid="uid://c3b2q1atdjn0g" path="res://UI/Assets/tutorial_2.png" id="3_iqbx0"]
+[ext_resource type="Texture2D" uid="uid://dppvfvhmhfbyp" path="res://UI/Assets/tutorial_3.png" id="4_ko6f3"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1fqyc"]
+bg_color = Color(0, 0, 0, 0.615686)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+corner_detail = 5
+
+[sub_resource type="LabelSettings" id="LabelSettings_dyrvq"]
+line_spacing = 1.0
+font = ExtResource("1_okswt")
+font_size = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xn6mn"]
+content_margin_top = 4.0
+content_margin_bottom = 3.0
+bg_color = Color(0.27451, 0.509804, 0.196078, 1)
+
+[node name="Tutorial" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_1fqyc")
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="TextureRect" type="TextureRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("1_86yet")
+stretch_mode = 2
+
+[node name="Label" type="Label" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "PEOPLE ARE WALKING IN.
+ATTRACTIVE PEOPLE.
+
+IGNORE ALL OF THE STUPID
+THINGS YOUR CLASSMATES SAY
+AND FIND OUT WHO HAS A CRUSH IN
+THE ROOM, USING WHAT THEY SAY AS
+HINTS.
+
+"
+label_settings = SubResource("LabelSettings_dyrvq")
+autowrap_mode = 2
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+texture = ExtResource("3_iqbx0")
+stretch_mode = 3
+
+[node name="Label" type="Label" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "BUY BUFFS USING MONEY."
+label_settings = SubResource("LabelSettings_dyrvq")
+autowrap_mode = 2
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+texture = ExtResource("4_ko6f3")
+stretch_mode = 3
+
+[node name="Label" type="Label" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "AND HURRY UP!"
+label_settings = SubResource("LabelSettings_dyrvq")
+autowrap_mode = 2
+
+[node name="StartButton" type="Button" parent="Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_okswt")
+theme_override_font_sizes/font_size = 8
+theme_override_styles/normal = SubResource("StyleBoxFlat_xn6mn")
+text = "OK"

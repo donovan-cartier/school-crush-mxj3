@@ -13,6 +13,13 @@ var dialogues: Array[String] = [
 	"WHERE IS THE TEACHER",
 	"WHEN IS LUNCH BREAK?",
 	"WHY ARE PEOPLE COMING IN",
+	"BLABLABLA...",
+	"AHAHAH",
+	"LOL",
+	"LMAO",
+	"CAN WE TAKE A BREAK?",
+	"WHO ASKED LOL",
+	"STFU GUYS",
 ]
 
 var special_dialogues: Array[String] = [

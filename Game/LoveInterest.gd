@@ -4,11 +4,6 @@ extends Sprite2D
 @export var love_interest_sprites: Array[Texture2D]
 
 signal crush_entered
-
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	await owner.ready
-	new_sequence(true)
 	
 func new_sequence(first: bool = false) -> void:
 	if !first:

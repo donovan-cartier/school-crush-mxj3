@@ -1,18 +1,26 @@
-[gd_scene load_steps=31 format=3 uid="uid://ci2nn6061c4ar"]
+[gd_scene load_steps=52 format=3 uid="uid://ci2nn6061c4ar"]
 
 [ext_resource type="Script" path="res://Game/game.gd" id="1_3nbi6"]
 [ext_resource type="Texture2D" uid="uid://cfy1jarvq7olf" path="res://World/Assets/background.png" id="1_l1kaf"]
 [ext_resource type="PackedScene" uid="uid://capas210hd7ob" path="res://Characters/character.tscn" id="4_dvoy4"]
 [ext_resource type="Texture2D" uid="uid://ckk3y3ylramub" path="res://Characters/Assets/crush_female.png" id="4_e8pg0"]
+[ext_resource type="Shader" path="res://Shaders/outline.gdshader" id="4_fqsdo"]
 [ext_resource type="Script" path="res://Game/LoveInterest.gd" id="5_r6rgh"]
+[ext_resource type="Texture2D" uid="uid://bhs6dyu414esy" path="res://Characters/Assets/char_2.png" id="5_vbfr0"]
+[ext_resource type="Texture2D" uid="uid://8udfxwf7dfvm" path="res://Characters/Assets/char_6.png" id="6_sw66h"]
 [ext_resource type="Texture2D" uid="uid://cfy7b7mldobkg" path="res://Characters/Assets/crush_male.png" id="6_v1yic"]
 [ext_resource type="Script" path="res://UI/SpeechControl.gd" id="7_fffha"]
+[ext_resource type="Texture2D" uid="uid://sfy5bxcw01ih" path="res://Characters/Assets/char_5.png" id="7_tuarx"]
+[ext_resource type="Texture2D" uid="uid://djjaptmhn11we" path="res://Characters/Assets/char_3.png" id="8_e1b5e"]
 [ext_resource type="PackedScene" uid="uid://bwijllu1rm01i" path="res://UI/game_over.tscn" id="8_odtxv"]
 [ext_resource type="FontFile" uid="uid://dpxifyakt7st" path="res://Fonts/PressStart2P.ttf" id="9_t4lpy"]
 [ext_resource type="Script" path="res://UI/Buffs.gd" id="9_xhmga"]
 [ext_resource type="Script" path="res://Game/UI.gd" id="9_xq2vu"]
+[ext_resource type="Texture2D" uid="uid://cudcik6lawy03" path="res://Characters/Assets/char_4.png" id="9_ya46h"]
 [ext_resource type="Texture2D" uid="uid://dpwo5uhynqspf" path="res://UI/Assets/icon_buff_highlight.png" id="9_yn6hs"]
 [ext_resource type="Texture2D" uid="uid://dak5hbeqe1j1y" path="res://UI/Assets/icon_buff_classmate.png" id="10_4j0g7"]
+[ext_resource type="Texture2D" uid="uid://bobql7t5qycdy" path="res://Characters/Assets/char_8.png" id="10_vwcjn"]
+[ext_resource type="Texture2D" uid="uid://bm6sup14sbimw" path="res://Characters/Assets/char_7.png" id="11_5pobn"]
 [ext_resource type="Texture2D" uid="uid://j54amye72qsj" path="res://UI/Assets/icon_buff_highlight_pressed.png" id="11_afix7"]
 [ext_resource type="Texture2D" uid="uid://dyt6q71dbiyed" path="res://UI/Assets/icon_buff_crush.png" id="11_afp12"]
 [ext_resource type="Texture2D" uid="uid://c6w1r5xqf6c3u" path="res://UI/Assets/icon_buff_highlight_hover.png" id="12_7qw0u"]
@@ -24,6 +32,50 @@
 [ext_resource type="Texture2D" uid="uid://b66w1rckcnnub" path="res://UI/Assets/icon_buff_crush_hover.png" id="18_sm0u5"]
 [ext_resource type="Texture2D" uid="uid://c2utm36lw1we" path="res://UI/Assets/icon_buff_shhh_pressed.png" id="20_fosrm"]
 [ext_resource type="Texture2D" uid="uid://6qtgwotden6u" path="res://UI/Assets/icon_buff_shhh_hover.png" id="21_swrab"]
+[ext_resource type="Script" path="res://UI/GameTimer.gd" id="25_33uql"]
+[ext_resource type="PackedScene" uid="uid://d36w50j327ws1" path="res://UI/tutorial.tscn" id="34_4kbji"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ji43w"]
+resource_local_to_scene = true
+shader = ExtResource("4_fqsdo")
+shader_parameter/line_color = Vector4(1, 1, 1, 1)
+shader_parameter/line_thickness = 0.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_00lh0"]
+resource_local_to_scene = true
+shader = ExtResource("4_fqsdo")
+shader_parameter/line_color = Vector4(1, 1, 1, 1)
+shader_parameter/line_thickness = 0.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6x2e7"]
+resource_local_to_scene = true
+shader = ExtResource("4_fqsdo")
+shader_parameter/line_color = Vector4(1, 1, 1, 1)
+shader_parameter/line_thickness = 0.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lt64t"]
+resource_local_to_scene = true
+shader = ExtResource("4_fqsdo")
+shader_parameter/line_color = Vector4(1, 1, 1, 1)
+shader_parameter/line_thickness = 0.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_a1q2b"]
+resource_local_to_scene = true
+shader = ExtResource("4_fqsdo")
+shader_parameter/line_color = Vector4(1, 1, 1, 1)
+shader_parameter/line_thickness = 0.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_d8u5t"]
+resource_local_to_scene = true
+shader = ExtResource("4_fqsdo")
+shader_parameter/line_color = Vector4(1, 1, 1, 1)
+shader_parameter/line_thickness = 0.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2pddj"]
+resource_local_to_scene = true
+shader = ExtResource("4_fqsdo")
+shader_parameter/line_color = Vector4(1, 1, 1, 1)
+shader_parameter/line_thickness = 0.0
 
 [sub_resource type="Animation" id="Animation_uslyu"]
 resource_name = "enter"
@@ -57,6 +109,12 @@ outline_color = Color(0, 0, 0, 1)
 font = ExtResource("9_t4lpy")
 font_size = 8
 
+[sub_resource type="LabelSettings" id="LabelSettings_xlmcp"]
+font = ExtResource("9_t4lpy")
+font_size = 8
+outline_size = 2
+outline_color = Color(0, 0, 0, 1)
+
 [sub_resource type="Animation" id="Animation_vdvr0"]
 resource_name = "show"
 tracks/0/type = "value"
@@ -89,46 +147,92 @@ _data = {
 "show": SubResource("Animation_vdvr0")
 }
 
-[node name="Game" type="Node2D" node_paths=PackedStringArray("love_interest", "game_over_screen")]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_w8nrj"]
+bg_color = Color(0.266667, 0.0470588, 0.243137, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_d1p5h"]
+bg_color = Color(0.780392, 0.192157, 0.670588, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_14qq0"]
+font = ExtResource("9_t4lpy")
+font_size = 8
+outline_size = 2
+outline_color = Color(0, 0, 0, 1)
+
+[node name="Game" type="Node2D" node_paths=PackedStringArray("love_interest", "game_over_screen", "tutorial_screen")]
 script = ExtResource("1_3nbi6")
 love_interest = NodePath("LoveInterest")
 game_over_screen = NodePath("CanvasLayer/GameOver")
+tutorial_screen = NodePath("CanvasLayer/Tutorial")
 
 [node name="Background" type="Sprite2D" parent="."]
 texture = ExtResource("1_l1kaf")
 centered = false
 
 [node name="Character" parent="." node_paths=PackedStringArray("speech_control") instance=ExtResource("4_dvoy4")]
-position = Vector2(55.5, 106)
+position = Vector2(56, 106)
 speech_control = NodePath("../CanvasLayer/SpeechControl")
 
 [node name="Character2" parent="." node_paths=PackedStringArray("speech_control") instance=ExtResource("4_dvoy4")]
-position = Vector2(108.5, 106)
+position = Vector2(109, 106)
 speech_control = NodePath("../CanvasLayer/SpeechControl")
+
+[node name="CharacterSprite" parent="Character2" index="0"]
+material = SubResource("ShaderMaterial_ji43w")
+texture = ExtResource("5_vbfr0")
 
 [node name="Character3" parent="." node_paths=PackedStringArray("speech_control") instance=ExtResource("4_dvoy4")]
-position = Vector2(109.5, 150)
+position = Vector2(110, 150)
 speech_control = NodePath("../CanvasLayer/SpeechControl")
+
+[node name="CharacterSprite" parent="Character3" index="0"]
+material = SubResource("ShaderMaterial_00lh0")
+texture = ExtResource("6_sw66h")
 
 [node name="Character4" parent="." node_paths=PackedStringArray("speech_control") instance=ExtResource("4_dvoy4")]
-position = Vector2(56.5, 150)
+position = Vector2(57, 150)
 speech_control = NodePath("../CanvasLayer/SpeechControl")
+
+[node name="CharacterSprite" parent="Character4" index="0"]
+material = SubResource("ShaderMaterial_6x2e7")
+texture = ExtResource("7_tuarx")
 
 [node name="Character5" parent="." node_paths=PackedStringArray("speech_control") instance=ExtResource("4_dvoy4")]
-position = Vector2(217.5, 106)
+position = Vector2(214, 106)
 speech_control = NodePath("../CanvasLayer/SpeechControl")
+
+[node name="CharacterSprite" parent="Character5" index="0"]
+material = SubResource("ShaderMaterial_lt64t")
+position = Vector2(-2, 0)
+texture = ExtResource("8_e1b5e")
+flip_h = true
 
 [node name="Character6" parent="." node_paths=PackedStringArray("speech_control") instance=ExtResource("4_dvoy4")]
-position = Vector2(271, 106)
+position = Vector2(265, 106)
 speech_control = NodePath("../CanvasLayer/SpeechControl")
+
+[node name="CharacterSprite" parent="Character6" index="0"]
+material = SubResource("ShaderMaterial_a1q2b")
+texture = ExtResource("9_ya46h")
+flip_h = true
 
 [node name="Character7" parent="." node_paths=PackedStringArray("speech_control") instance=ExtResource("4_dvoy4")]
-position = Vector2(272, 150)
+position = Vector2(264, 150)
 speech_control = NodePath("../CanvasLayer/SpeechControl")
 
+[node name="CharacterSprite" parent="Character7" index="0"]
+material = SubResource("ShaderMaterial_d8u5t")
+texture = ExtResource("10_vwcjn")
+flip_h = true
+
 [node name="Character8" parent="." node_paths=PackedStringArray("speech_control") instance=ExtResource("4_dvoy4")]
-position = Vector2(219, 150)
+position = Vector2(211, 150)
 speech_control = NodePath("../CanvasLayer/SpeechControl")
+
+[node name="CharacterSprite" parent="Character8" index="0"]
+material = SubResource("ShaderMaterial_2pddj")
+texture = ExtResource("11_5pobn")
+flip_h = true
 
 [node name="LoveInterest" type="Sprite2D" parent="."]
 position = Vector2(500, 52)
@@ -269,12 +373,16 @@ script = ExtResource("9_xq2vu")
 
 [node name="Points" type="Label" parent="CanvasLayer/UI"]
 layout_mode = 1
-offset_top = 5.0
-offset_right = 40.0
-offset_bottom = 28.0
-theme_override_fonts/font = ExtResource("9_t4lpy")
-theme_override_font_sizes/font_size = 16
-text = "0"
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -69.0
+offset_top = 16.0
+offset_right = -5.0
+offset_bottom = 39.0
+grow_horizontal = 0
+text = "MONEY: 0"
+label_settings = SubResource("LabelSettings_xlmcp")
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -306,16 +414,47 @@ libraries = {
 "": SubResource("AnimationLibrary_2mdfk")
 }
 
+[node name="GameTimer" type="ProgressBar" parent="CanvasLayer/UI"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 6.0
+offset_top = 4.0
+offset_right = -241.0
+offset_bottom = 8.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("9_t4lpy")
+theme_override_styles/background = SubResource("StyleBoxFlat_w8nrj")
+theme_override_styles/fill = SubResource("StyleBoxFlat_d1p5h")
+value = 100.0
+show_percentage = false
+script = ExtResource("25_33uql")
+
+[node name="Label" type="Label" parent="CanvasLayer/UI/GameTimer"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 21.0
+text = "TIMER"
+label_settings = SubResource("LabelSettings_14qq0")
+vertical_alignment = 1
+
+[node name="Tutorial" parent="CanvasLayer" instance=ExtResource("34_4kbji")]
+
 [connection signal="bought_classmate_buff" from="." to="CanvasLayer/Buffs/ClassmateBuffButton/BuffLevel" method="_on_game_bought_classmate_buff"]
 [connection signal="bought_crush_buff" from="." to="CanvasLayer/Buffs/CrushBuffButton/BuffLevel" method="_on_game_bought_crush_buff"]
+[connection signal="bought_highlight_buff" from="." to="CanvasLayer/Buffs" method="_on_game_bought_highlight_buff"]
 [connection signal="can_buy_classmate_buff" from="." to="CanvasLayer/Buffs" method="_on_game_can_buy_classmate_buff"]
 [connection signal="can_buy_crush_buff" from="." to="CanvasLayer/Buffs" method="_on_game_can_buy_crush_buff"]
 [connection signal="can_buy_highlight_buff" from="." to="CanvasLayer/Buffs" method="_on_game_can_buy_highlight_buff"]
 [connection signal="can_buy_shhh_buff" from="." to="CanvasLayer/Buffs" method="_on_game_can_buy_shhh_buff"]
 [connection signal="obtained_points" from="." to="CanvasLayer/UI" method="_on_game_obtained_points"]
+[connection signal="round_won" from="." to="CanvasLayer/UI/GameTimer" method="_on_game_round_won"]
+[connection signal="sequence_started" from="." to="CanvasLayer/UI/GameTimer" method="_on_game_sequence_started"]
 [connection signal="spent_points" from="." to="." method="_on_spent_points"]
 [connection signal="spent_points" from="." to="CanvasLayer/UI" method="_on_game_spent_points"]
 [connection signal="crush_entered" from="LoveInterest" to="." method="_on_love_interest_crush_entered"]
+[connection signal="pressed" from="CanvasLayer/GameOver/VBoxContainer/TryAgainButton" to="." method="_on_try_again_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/GameOver/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
 [connection signal="mouse_entered" from="CanvasLayer/Buffs/HighlightBuffButton" to="CanvasLayer/Buffs" method="_on_highlight_buff_button_mouse_entered"]
 [connection signal="mouse_exited" from="CanvasLayer/Buffs/HighlightBuffButton" to="CanvasLayer/Buffs" method="_on_highlight_buff_button_mouse_exited"]
 [connection signal="pressed" from="CanvasLayer/Buffs/HighlightBuffButton" to="." method="_on_highlight_buff_button_pressed"]
@@ -327,3 +466,15 @@ libraries = {
 [connection signal="pressed" from="CanvasLayer/Buffs/CrushBuffButton" to="." method="_on_crush_buff_button_pressed"]
 [connection signal="mouse_entered" from="CanvasLayer/Buffs/SHHHBuffButton" to="CanvasLayer/Buffs" method="_on_shhh_buff_button_mouse_entered"]
 [connection signal="mouse_exited" from="CanvasLayer/Buffs/SHHHBuffButton" to="CanvasLayer/Buffs" method="_on_shhh_buff_button_mouse_exited"]
+[connection signal="pressed" from="CanvasLayer/Buffs/SHHHBuffButton" to="." method="_on_shhh_buff_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/Tutorial/Panel/MarginContainer/VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
+
+[editable path="Character2"]
+[editable path="Character3"]
+[editable path="Character4"]
+[editable path="Character5"]
+[editable path="Character6"]
+[editable path="Character7"]
+[editable path="Character8"]
+[editable path="CanvasLayer/GameOver"]
+[editable path="CanvasLayer/Tutorial"]
