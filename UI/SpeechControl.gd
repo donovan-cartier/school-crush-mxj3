@@ -11,6 +11,8 @@ var dialogues: Array[String] = [
 	"YALL SEEN THIS NEW GAME?",
 	"WHY IS EVERYONE SPEAKING",
 	"WHERE IS THE TEACHER",
+	"WHEN IS LUNCH BREAK?",
+	"WHY ARE PEOPLE COMING IN",
 ]
 
 var special_dialogues: Array[String] = [

@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://ci2nn6061c4ar"]
+[gd_scene load_steps=31 format=3 uid="uid://ci2nn6061c4ar"]
 
 [ext_resource type="Script" path="res://Game/game.gd" id="1_3nbi6"]
 [ext_resource type="Texture2D" uid="uid://cfy1jarvq7olf" path="res://World/Assets/background.png" id="1_l1kaf"]
@@ -8,12 +8,22 @@
 [ext_resource type="Texture2D" uid="uid://cfy7b7mldobkg" path="res://Characters/Assets/crush_male.png" id="6_v1yic"]
 [ext_resource type="Script" path="res://UI/SpeechControl.gd" id="7_fffha"]
 [ext_resource type="PackedScene" uid="uid://bwijllu1rm01i" path="res://UI/game_over.tscn" id="8_odtxv"]
+[ext_resource type="FontFile" uid="uid://dpxifyakt7st" path="res://Fonts/PressStart2P.ttf" id="9_t4lpy"]
+[ext_resource type="Script" path="res://UI/Buffs.gd" id="9_xhmga"]
 [ext_resource type="Script" path="res://Game/UI.gd" id="9_xq2vu"]
 [ext_resource type="Texture2D" uid="uid://dpwo5uhynqspf" path="res://UI/Assets/icon_buff_highlight.png" id="9_yn6hs"]
 [ext_resource type="Texture2D" uid="uid://dak5hbeqe1j1y" path="res://UI/Assets/icon_buff_classmate.png" id="10_4j0g7"]
-[ext_resource type="Texture2D" uid="uid://c0pib4me5wo5m" path="res://UI/Assets/icon_buff_highlight_disabled.png" id="10_aitq3"]
+[ext_resource type="Texture2D" uid="uid://j54amye72qsj" path="res://UI/Assets/icon_buff_highlight_pressed.png" id="11_afix7"]
 [ext_resource type="Texture2D" uid="uid://dyt6q71dbiyed" path="res://UI/Assets/icon_buff_crush.png" id="11_afp12"]
+[ext_resource type="Texture2D" uid="uid://c6w1r5xqf6c3u" path="res://UI/Assets/icon_buff_highlight_hover.png" id="12_7qw0u"]
 [ext_resource type="Texture2D" uid="uid://dqn27g2k65jwh" path="res://UI/Assets/icon_buff_shhh.png" id="12_vrtj6"]
+[ext_resource type="Texture2D" uid="uid://ysho37f6hwxa" path="res://UI/Assets/icon_buff_classmate_pressed.png" id="13_cnknd"]
+[ext_resource type="Script" path="res://UI/BuffLevel.gd" id="13_grle7"]
+[ext_resource type="Texture2D" uid="uid://tintuvycrngm" path="res://UI/Assets/icon_buff_classmate_hover.png" id="14_omdep"]
+[ext_resource type="Texture2D" uid="uid://c56nuwtp0wr13" path="res://UI/Assets/icon_buff_crush_pressed.png" id="17_bhut7"]
+[ext_resource type="Texture2D" uid="uid://b66w1rckcnnub" path="res://UI/Assets/icon_buff_crush_hover.png" id="18_sm0u5"]
+[ext_resource type="Texture2D" uid="uid://c2utm36lw1we" path="res://UI/Assets/icon_buff_shhh_pressed.png" id="20_fosrm"]
+[ext_resource type="Texture2D" uid="uid://6qtgwotden6u" path="res://UI/Assets/icon_buff_shhh_hover.png" id="21_swrab"]
 
 [sub_resource type="Animation" id="Animation_uslyu"]
 resource_name = "enter"
@@ -35,6 +45,17 @@ tracks/0/keys = {
 _data = {
 "enter": SubResource("Animation_uslyu")
 }
+
+[sub_resource type="LabelSettings" id="LabelSettings_crvgk"]
+line_spacing = 0.0
+font = ExtResource("9_t4lpy")
+font_size = 8
+outline_size = 2
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_burxe"]
+font = ExtResource("9_t4lpy")
+font_size = 8
 
 [sub_resource type="Animation" id="Animation_vdvr0"]
 resource_name = "show"
@@ -145,9 +166,9 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -82.0
+offset_left = -119.0
 offset_top = -20.0
-offset_right = 82.0
+offset_right = 119.0
 offset_bottom = 58.0
 grow_horizontal = 2
 grow_vertical = 2
@@ -159,29 +180,82 @@ visible = false
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -46.0
+offset_left = -105.0
 offset_top = 7.0
 offset_right = -5.0
-offset_bottom = 47.0
+offset_bottom = 18.0
 grow_horizontal = 0
 theme_override_constants/separation = 4
+script = ExtResource("9_xhmga")
+
+[node name="Label" type="Label" parent="CanvasLayer/Buffs"]
+texture_filter = 1
+layout_mode = 2
+size_flags_vertical = 1
+text = "BUFFS"
+label_settings = SubResource("LabelSettings_crvgk")
 
 [node name="HighlightBuffButton" type="TextureButton" parent="CanvasLayer/Buffs"]
 layout_mode = 2
+disabled = true
 texture_normal = ExtResource("9_yn6hs")
-texture_disabled = ExtResource("10_aitq3")
+texture_pressed = ExtResource("11_afix7")
+texture_hover = ExtResource("12_7qw0u")
+texture_disabled = ExtResource("11_afix7")
 
 [node name="ClassmateBuffButton" type="TextureButton" parent="CanvasLayer/Buffs"]
 layout_mode = 2
+disabled = true
 texture_normal = ExtResource("10_4j0g7")
+texture_pressed = ExtResource("13_cnknd")
+texture_hover = ExtResource("14_omdep")
+texture_disabled = ExtResource("13_cnknd")
+
+[node name="BuffLevel" type="Label" parent="CanvasLayer/Buffs/ClassmateBuffButton"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -7.5
+offset_top = -6.0
+offset_right = 8.5
+offset_bottom = 10.0
+grow_horizontal = 2
+text = "0"
+label_settings = SubResource("LabelSettings_burxe")
+horizontal_alignment = 1
+script = ExtResource("13_grle7")
 
 [node name="CrushBuffButton" type="TextureButton" parent="CanvasLayer/Buffs"]
 layout_mode = 2
+disabled = true
 texture_normal = ExtResource("11_afp12")
+texture_pressed = ExtResource("17_bhut7")
+texture_hover = ExtResource("18_sm0u5")
+texture_disabled = ExtResource("17_bhut7")
+
+[node name="BuffLevel" type="Label" parent="CanvasLayer/Buffs/CrushBuffButton"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -7.5
+offset_top = -6.0
+offset_right = 8.5
+offset_bottom = 10.0
+grow_horizontal = 2
+text = "0"
+label_settings = SubResource("LabelSettings_burxe")
+horizontal_alignment = 1
+script = ExtResource("13_grle7")
 
 [node name="SHHHBuffButton" type="TextureButton" parent="CanvasLayer/Buffs"]
 layout_mode = 2
+disabled = true
 texture_normal = ExtResource("12_vrtj6")
+texture_pressed = ExtResource("20_fosrm")
+texture_hover = ExtResource("21_swrab")
+texture_disabled = ExtResource("20_fosrm")
 
 [node name="UI" type="Control" parent="CanvasLayer"]
 layout_mode = 3
@@ -195,9 +269,11 @@ script = ExtResource("9_xq2vu")
 
 [node name="Points" type="Label" parent="CanvasLayer/UI"]
 layout_mode = 1
+offset_top = 5.0
 offset_right = 40.0
-offset_bottom = 23.0
-theme_override_font_sizes/font_size = 14
+offset_bottom = 28.0
+theme_override_fonts/font = ExtResource("9_t4lpy")
+theme_override_font_sizes/font_size = 16
 text = "0"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -230,9 +306,24 @@ libraries = {
 "": SubResource("AnimationLibrary_2mdfk")
 }
 
+[connection signal="bought_classmate_buff" from="." to="CanvasLayer/Buffs/ClassmateBuffButton/BuffLevel" method="_on_game_bought_classmate_buff"]
+[connection signal="bought_crush_buff" from="." to="CanvasLayer/Buffs/CrushBuffButton/BuffLevel" method="_on_game_bought_crush_buff"]
+[connection signal="can_buy_classmate_buff" from="." to="CanvasLayer/Buffs" method="_on_game_can_buy_classmate_buff"]
+[connection signal="can_buy_crush_buff" from="." to="CanvasLayer/Buffs" method="_on_game_can_buy_crush_buff"]
+[connection signal="can_buy_highlight_buff" from="." to="CanvasLayer/Buffs" method="_on_game_can_buy_highlight_buff"]
+[connection signal="can_buy_shhh_buff" from="." to="CanvasLayer/Buffs" method="_on_game_can_buy_shhh_buff"]
 [connection signal="obtained_points" from="." to="CanvasLayer/UI" method="_on_game_obtained_points"]
+[connection signal="spent_points" from="." to="." method="_on_spent_points"]
 [connection signal="spent_points" from="." to="CanvasLayer/UI" method="_on_game_spent_points"]
 [connection signal="crush_entered" from="LoveInterest" to="." method="_on_love_interest_crush_entered"]
+[connection signal="mouse_entered" from="CanvasLayer/Buffs/HighlightBuffButton" to="CanvasLayer/Buffs" method="_on_highlight_buff_button_mouse_entered"]
+[connection signal="mouse_exited" from="CanvasLayer/Buffs/HighlightBuffButton" to="CanvasLayer/Buffs" method="_on_highlight_buff_button_mouse_exited"]
 [connection signal="pressed" from="CanvasLayer/Buffs/HighlightBuffButton" to="." method="_on_highlight_buff_button_pressed"]
+[connection signal="mouse_entered" from="CanvasLayer/Buffs/ClassmateBuffButton" to="CanvasLayer/Buffs" method="_on_classmate_buff_button_mouse_entered"]
+[connection signal="mouse_exited" from="CanvasLayer/Buffs/ClassmateBuffButton" to="CanvasLayer/Buffs" method="_on_classmate_buff_button_mouse_exited"]
 [connection signal="pressed" from="CanvasLayer/Buffs/ClassmateBuffButton" to="." method="_on_classmate_buff_button_pressed"]
+[connection signal="mouse_entered" from="CanvasLayer/Buffs/CrushBuffButton" to="CanvasLayer/Buffs" method="_on_crush_buff_button_mouse_entered"]
+[connection signal="mouse_exited" from="CanvasLayer/Buffs/CrushBuffButton" to="CanvasLayer/Buffs" method="_on_crush_buff_button_mouse_exited"]
 [connection signal="pressed" from="CanvasLayer/Buffs/CrushBuffButton" to="." method="_on_crush_buff_button_pressed"]
+[connection signal="mouse_entered" from="CanvasLayer/Buffs/SHHHBuffButton" to="CanvasLayer/Buffs" method="_on_shhh_buff_button_mouse_entered"]
+[connection signal="mouse_exited" from="CanvasLayer/Buffs/SHHHBuffButton" to="CanvasLayer/Buffs" method="_on_shhh_buff_button_mouse_exited"]
