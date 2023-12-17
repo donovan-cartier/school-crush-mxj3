@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://ci2nn6061c4ar"]
+[gd_scene load_steps=19 format=3 uid="uid://ci2nn6061c4ar"]
 
 [ext_resource type="Script" path="res://Game/game.gd" id="1_3nbi6"]
 [ext_resource type="Texture2D" uid="uid://cfy1jarvq7olf" path="res://World/Assets/background.png" id="1_l1kaf"]
@@ -8,6 +8,12 @@
 [ext_resource type="Texture2D" uid="uid://cfy7b7mldobkg" path="res://Characters/Assets/crush_male.png" id="6_v1yic"]
 [ext_resource type="Script" path="res://UI/SpeechControl.gd" id="7_fffha"]
 [ext_resource type="PackedScene" uid="uid://bwijllu1rm01i" path="res://UI/game_over.tscn" id="8_odtxv"]
+[ext_resource type="Script" path="res://Game/UI.gd" id="9_xq2vu"]
+[ext_resource type="Texture2D" uid="uid://dpwo5uhynqspf" path="res://UI/Assets/icon_buff_highlight.png" id="9_yn6hs"]
+[ext_resource type="Texture2D" uid="uid://dak5hbeqe1j1y" path="res://UI/Assets/icon_buff_classmate.png" id="10_4j0g7"]
+[ext_resource type="Texture2D" uid="uid://c0pib4me5wo5m" path="res://UI/Assets/icon_buff_highlight_disabled.png" id="10_aitq3"]
+[ext_resource type="Texture2D" uid="uid://dyt6q71dbiyed" path="res://UI/Assets/icon_buff_crush.png" id="11_afp12"]
+[ext_resource type="Texture2D" uid="uid://dqn27g2k65jwh" path="res://UI/Assets/icon_buff_shhh.png" id="12_vrtj6"]
 
 [sub_resource type="Animation" id="Animation_uslyu"]
 resource_name = "enter"
@@ -28,6 +34,38 @@ tracks/0/keys = {
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_0cn3m"]
 _data = {
 "enter": SubResource("Animation_uslyu")
+}
+
+[sub_resource type="Animation" id="Animation_vdvr0"]
+resource_name = "show"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.8, 1),
+"transitions": PackedFloat32Array(0.5, 1, 1, 0.5),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(1, 1), Vector2(1, 1), Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.8, 1),
+"transitions": PackedFloat32Array(0.5, 1, 1, 0.5),
+"update": 0,
+"values": [0.733038, 0.0, 0.0, 0.733038]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_2mdfk"]
+_data = {
+"show": SubResource("Animation_vdvr0")
 }
 
 [node name="Game" type="Node2D" node_paths=PackedStringArray("love_interest", "game_over_screen")]
@@ -117,4 +155,84 @@ grow_vertical = 2
 [node name="GameOver" parent="CanvasLayer" instance=ExtResource("8_odtxv")]
 visible = false
 
+[node name="Buffs" type="HBoxContainer" parent="CanvasLayer"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -46.0
+offset_top = 7.0
+offset_right = -5.0
+offset_bottom = 47.0
+grow_horizontal = 0
+theme_override_constants/separation = 4
+
+[node name="HighlightBuffButton" type="TextureButton" parent="CanvasLayer/Buffs"]
+layout_mode = 2
+texture_normal = ExtResource("9_yn6hs")
+texture_disabled = ExtResource("10_aitq3")
+
+[node name="ClassmateBuffButton" type="TextureButton" parent="CanvasLayer/Buffs"]
+layout_mode = 2
+texture_normal = ExtResource("10_4j0g7")
+
+[node name="CrushBuffButton" type="TextureButton" parent="CanvasLayer/Buffs"]
+layout_mode = 2
+texture_normal = ExtResource("11_afp12")
+
+[node name="SHHHBuffButton" type="TextureButton" parent="CanvasLayer/Buffs"]
+layout_mode = 2
+texture_normal = ExtResource("12_vrtj6")
+
+[node name="UI" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("9_xq2vu")
+
+[node name="Points" type="Label" parent="CanvasLayer/UI"]
+layout_mode = 1
+offset_right = 40.0
+offset_bottom = 23.0
+theme_override_font_sizes/font_size = 14
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="OKLabel" type="Label" parent="CanvasLayer/UI"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+rotation = 0.733038
+scale = Vector2(1e-05, 1e-05)
+theme_override_colors/font_color = Color(0.443137, 0.815686, 0.313726, 1)
+theme_override_colors/font_outline_color = Color(0.172549, 0.172549, 0.172549, 1)
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/font_size = 32
+text = "OK"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/UI/OKLabel"]
+libraries = {
+"": SubResource("AnimationLibrary_2mdfk")
+}
+
+[connection signal="obtained_points" from="." to="CanvasLayer/UI" method="_on_game_obtained_points"]
+[connection signal="spent_points" from="." to="CanvasLayer/UI" method="_on_game_spent_points"]
 [connection signal="crush_entered" from="LoveInterest" to="." method="_on_love_interest_crush_entered"]
+[connection signal="pressed" from="CanvasLayer/Buffs/HighlightBuffButton" to="." method="_on_highlight_buff_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/Buffs/ClassmateBuffButton" to="." method="_on_classmate_buff_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/Buffs/CrushBuffButton" to="." method="_on_crush_buff_button_pressed"]

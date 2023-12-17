@@ -4,7 +4,7 @@ class_name Character
 @onready var hint_icon: Sprite2D = $HintIcon
 @onready var character_sprite: Sprite2D = $CharacterSprite
 @onready var outline_shader: Material = character_sprite.material
-@onready var game: Node2D = get_tree().get_root().get_node("Game")
+@onready var game: Game = get_tree().get_root().get_node("Game")
 @onready var random_event_timer: Timer = $RandomEventTimer
 
 @export var in_love: bool = false
@@ -34,11 +34,24 @@ func blame():
 
 func _on_start_sequence():
 	randomize()
-	random_event_timer.wait_time = randf_range(1, 20)
+	if in_love:
+		var random_time = randf_range(5, 30)
+		if game.crush_buff_level != 0:
+			random_time -= (game.crush_buff_level + 1) * 1.5
+			
+		random_event_timer.wait_time = random_time
+	else:
+		var random_time = randf_range(1, 20)
+		if game.classmate_buff_level != 0:
+			print("classamte time before: " + str (random_time))
+			random_time += (game.classmate_buff_level + 1) * 1.5
+				
+			print("classamte time: " + str (random_time))
+		random_event_timer.wait_time = random_time
 	random_event_timer.start()
 
 func _on_random_event_timer_timeout() -> void:
-	speech_control.display_dialogue(in_love)
+	speech_control.display_dialogue(in_love, game.has_highlight_buff)
 	show_hint()
 	
 func show_hint():
